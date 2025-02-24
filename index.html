@@ -3,85 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Drop Marketplace</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Price Drop Marketplace - Items that get cheaper by the hour</title>
+    <link rel="stylesheet" href="landing-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="nav-bar">
-            <div class="nav-brand">Price Drop</div>
-            <div class="nav-menu">
-                <button id="loginBtn" class="nav-btn">Login</button>
-                <button id="sellBtn" class="nav-btn primary">Sell Item</button>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <h1>Price Drop</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#features">Features</a>
+                    <a href="#faqs">FAQs</a>
+                    <a href="https://app.11oclocktoast.com" class="cta-button">Try It Now</a>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
 
-        <!-- Main Content Area -->
-        <main>
-            <!-- Search and Filter Section -->
-            <section class="search-section">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search items...">
-                    <button id="searchBtn">Search</button>
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>The marketplace where prices drop automatically</h2>
+                    <p>Every hour, every item gets $1 cheaper until someone buys it or it hits the seller's minimum price.</p>
+                    <div class="cta-group">
+                        <a href="https://app.11oclocktoast.com" class="cta-button">Start Shopping</a>
+                        <a href="https://app.11oclocktoast.com/sell" class="cta-button secondary">Sell Your Items</a>
+                    </div>
                 </div>
-                <div class="filter-container">
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="books">Books</option>
-                    </select>
-                    <select id="sortFilter">
-                        <option value="price-desc">Price: High to Low</option>
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="newest">Newest First</option>
-                    </select>
+                <div class="hero-image">
+                    <img src="/api/placeholder/500/400" alt="Price Drop Marketplace mobile app">
                 </div>
-            </section>
-
-            <!-- Items Grid -->
-            <section class="items-grid" id="itemsContainer">
-                <!-- Items will be dynamically inserted here -->
-            </section>
-        </main>
-
-        <!-- Modal Templates -->
-        <div id="loginModal" class="modal">
-            <div class="modal-content">
-                <h2>Login</h2>
-                <form id="loginForm">
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                    <button type="button" class="secondary" id="registerBtn">Register</button>
-                </form>
             </div>
         </div>
+    </header>
 
-        <div id="sellModal" class="modal">
-            <div class="modal-content">
-                <h2>Sell Item</h2>
-                <form id="sellForm">
-                    <input type="text" placeholder="Item Name" required>
-                    <textarea placeholder="Description" required></textarea>
-                    <input type="number" placeholder="Starting Price" required>
-                    <input type="number" placeholder="Minimum Price" required>
-                    <select required>
-                        <option value="">Select Category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="books">Books</option>
-                    </select>
-                    <input type="file" accept="image/*" required>
-                    <button type="submit">List Item</button>
-                </form>
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>List Your Item</h3>
+                    <p>Add your item with photos, description, starting price, and minimum price you're willing to accept.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Watch The Price Drop</h3>
+                    <p>Every hour, the price automatically reduces by $1 until it reaches your set minimum.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Price Resets If Not Sold</h3>
+                    <p>If no one buys at the minimum price, it automatically resets to the original price and starts over.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">4</div>
+                    <h3>Buyer Gets A Deal</h3>
+                    <p>Buyers can purchase at any time, deciding when the price is right for them.</p>
+                </div>
+            </div>
+
+            <div class="demo">
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <img src="/api/placeholder/300/200" alt="Vintage camera">
+                    </div>
+                    <div class="demo-details">
+                        <h4>Vintage Film Camera</h4>
+                        <div class="demo-price">
+                            <div class="original-price">Starting Price: $50</div>
+                            <div class="current-price">Current Price: $43</div>
+                            <div class="minimum-price">Minimum Price: $25</div>
+                        </div>
+                        <div class="demo-timer">
+                            Next price drop in: <span class="countdown">27 minutes</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="app.js"></script>
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Dynamic Pricing</h3>
+                    <p>Prices automatically reduce over time, creating urgency and opportunities.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile First</h3>
+                    <p>Designed for the best experience on all your devices, especially mobile.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Transactions</h3>
+                    <p>Your data and transactions are protected with the latest security measures.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Search</h3>
+                    <p>Find exactly what you want with powerful search and filter options.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📸</div>
+                    <h3>Photo Uploads</h3>
+                    <p>Showcase your items with multiple high-quality photos.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Real-time Updates</h3>
+                    <p>See price updates and time until next price drop in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faqs" class="faqs">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much does it cost to list an item?</h3>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Listing items on Price Drop Marketplace is completely free. We don't charge any fees to sellers for listing their items.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I stop the price from dropping further?</h3>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you set a minimum price when you list your item. The price will never drop below this amount. If the item reaches the minimum price and doesn't sell, the price resets to the original asking price.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I know when a price is about to drop?</h3>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Each item displays a countdown timer showing exactly when the next price drop will occur. You can also set up notifications to alert you when items you're watching reach specific price points.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I buy an item immediately without waiting?</h3>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can purchase any item at its current price at any time. If you see something you like, you don't have to wait for the price to drop further, as someone else might buy it before you.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What happens if multiple people want to buy at the same time?</h3>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Items are sold on a first-come, first-served basis. Once a purchase is initiated, the item is temporarily reserved to prevent double-selling. If a purchase fails to complete, the item becomes available again.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to start buying and selling?</h2>
+            <p>Join thousands of users who are already saving money and finding great deals on Price Drop Marketplace.</p>
+            <a href="https://app.11oclocktoast.com" class="cta-button large">Get Started Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Price Drop</h3>
+                    <p>The marketplace where waiting can save you money. Every hour, every item gets cheaper until someone buys it.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Email: support@11oclocktoast.com</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Price Drop Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+                const toggle = this.querySelector('.toggle');
+                toggle.textContent = toggle.textContent === '+' ? '−' : '+';
+            });
+        });
+
+        // Countdown demo
+        let minutes = 27;
+        let seconds = 0;
+        
+        setInterval(function() {
+            seconds--;
+            if (seconds < 0) {
+                seconds = 59;
+                minutes--;
+            }
+            if (minutes < 0) {
+                minutes = 59;
+            }
+            
+            const countdownElement = document.querySelector('.countdown');
+            countdownElement.textContent = `${minutes} minutes ${seconds} seconds`;
+        }, 1000);
+    </script>
 </body>
 </html>
