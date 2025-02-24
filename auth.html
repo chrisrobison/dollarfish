@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up or Login - Price Drop Marketplace</title>
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Price Drop</h1>
+                </a>
+            </div>
+            
+            <div class="tab-controls">
+                <button class="tab-btn active" data-tab="signup">Sign Up</button>
+                <button class="tab-btn" data-tab="login">Login</button>
+            </div>
+            
+            <div class="form-container">
+                <!-- Sign Up Form -->
+                <form id="signup-form" class="tab-content active">
+                    <h2>Create your account</h2>
+                    
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" name="name" required>
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" name="email" required>
+                        <div class="error-message" id="signup-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="password" required>
+                        <div class="error-message" id="signup-password-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" name="confirmPassword" required>
+                        <div class="error-message" id="confirm-error"></div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="signup-terms" name="terms" required>
+                        <label for="signup-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        <div class="error-message" id="terms-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Create Account</button>
+                    
+                    <div class="form-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google">
+                            Continue with Google
+                        </button>
+                        <button type="button" class="social-btn facebook">
+                            Continue with Facebook
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Login Form -->
+                <form id="login-form" class="tab-content">
+                    <h2>Welcome back</h2>
+                    
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <div class="error-message" id="login-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <div class="error-message" id="login-password-error"></div>
+                        <div class="forgot-password">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="login-remember" name="remember">
+                        <label for="login-remember">Remember me</label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Login</button>
+                    
+                    <div class="form-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-btn google">
+                            Login with Google
+                        </button>
+                        <button type="button" class="social-btn facebook">
+                            Login with Facebook
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="help-links">
+            <a href="#">Help</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and forms
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(form => {
+                    form.classList.remove('active');
+                });
+                
+                // Add active class to current button
+                this.classList.add('active');
+                
+                // Show the corresponding form
+                const tabName = this.getAttribute('data-tab');
+                document.getElementById(`${tabName}-form`).classList.add('active');
+            });
+        });
+
+        // Form validation
+        const signupForm = document.getElementById('signup-form');
+        const loginForm = document.getElementById('login-form');
+        
+        // Password strength check
+        function checkPasswordStrength(password) {
+            if (password.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+            
+            if (!/[A-Z]/.test(password)) {
+                return "Password must contain at least one uppercase letter";
+            }
+            
+            if (!/[a-z]/.test(password)) {
+                return "Password must contain at least one lowercase letter";
+            }
+            
+            if (!/[0-9]/.test(password)) {
+                return "Password must contain at least one number";
+            }
+            
+            return "";
+        }
+        
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Signup form validation
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.textContent = '';
+            });
+            
+            // Validate name
+            const name = document.getElementById('signup-name').value.trim();
+            if (name === '') {
+                document.getElementById('name-error').textContent = 'Name is required';
+                isValid = false;
+            }
+            
+            // Validate email
+            const email = document.getElementById('signup-email').value.trim();
+            if (!validateEmail(email)) {
+                document.getElementById('signup-email-error').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Validate password
+            const password = document.getElementById('signup-password').value;
+            const passwordError = checkPasswordStrength(password);
+            if (passwordError) {
+                document.getElementById('signup-password-error').textContent = passwordError;
+                isValid = false;
+            }
+            
+            // Validate confirm password
+            const confirmPassword = document.getElementById('signup-confirm').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-error').textContent = 'Passwords do not match';
+                isValid = false;
+            }
+            
+            // Validate terms checkbox
+            if (!document.getElementById('signup-terms').checked) {
+                document.getElementById('terms-error').textContent = 'You must agree to the terms';
+                isValid = false;
+            }
+            
+            // If form is valid, submit it (in this case, we'll just show a message)
+            if (isValid) {
+                // In a real application, you would submit the form to your server here
+                // For this example, we'll just show a success message
+                signupForm.innerHTML = '<div class="success-message"><h2>Success!</h2><p>Your account has been created. You can now login.</p><button type="button" class="tab-btn" data-tab="login">Go to Login</button></div>';
+                
+                // Add event listener to the new button
+                document.querySelector('.success-message .tab-btn').addEventListener('click', function() {
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelector('.tab-btn[data-tab="login"]').classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(form => {
+                        form.classList.remove('active');
+                    });
+                    document.getElementById('login-form').classList.add('active');
+                });
+            }
+        });
+        
+        // Login form validation
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.textContent = '';
+            });
+            
+            // Validate email
+            const email = document.getElementById('login-email').value.trim();
+            if (!validateEmail(email)) {
+                document.getElementById('login-email-error').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Validate password (simple validation for login)
+            const password = document.getElementById('login-password').value;
+            if (password.length < 1) {
+                document.getElementById('login-password-error').textContent = 'Password is required';
+                isValid = false;
+            }
+            
+            // If form is valid, submit it (in this case, we'll redirect to app)
+            if (isValid) {
+                // In a real application, you would authenticate with your server here
+                // For this example, we'll simulate a redirect
+                window.location.href = 'app.html';
+            }
+        });
+    </script>
+</body>
+</html>
