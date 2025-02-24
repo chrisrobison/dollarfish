@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Drop Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <div class="nav-brand">Price Drop</div>
+            <div class="nav-menu">
+                <button id="loginBtn" class="nav-btn">Login</button>
+                <button id="sellBtn" class="nav-btn primary">Sell Item</button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Search and Filter Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search items...">
+                    <button id="searchBtn">Search</button>
+                </div>
+                <div class="filter-container">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="books">Books</option>
+                    </select>
+                    <select id="sortFilter">
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Items Grid -->
+            <section class="items-grid" id="itemsContainer">
+                <!-- Items will be dynamically inserted here -->
+            </section>
+        </main>
+
+        <!-- Modal Templates -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                    <button type="button" class="secondary" id="registerBtn">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="sellModal" class="modal">
+            <div class="modal-content">
+                <h2>Sell Item</h2>
+                <form id="sellForm">
+                    <input type="text" placeholder="Item Name" required>
+                    <textarea placeholder="Description" required></textarea>
+                    <input type="number" placeholder="Starting Price" required>
+                    <input type="number" placeholder="Minimum Price" required>
+                    <select required>
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="books">Books</option>
+                    </select>
+                    <input type="file" accept="image/*" required>
+                    <button type="submit">List Item</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

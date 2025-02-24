@@ -1,0 +1,23 @@
+[Unit]
+Description=Price Drop Marketplace
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Environment=NODE_ENV=production
+Environment=ENFORCE_HTTPS=true
+Environment=DOMAIN=11oclocktoast.com
+WorkingDirectory=/path/to/price-drop-marketplace
+ExecStart=/usr/bin/node server.js
+Restart=always
+# Restart service after 10 seconds if node service crashes
+RestartSec=10
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=price-drop
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
