@@ -32,7 +32,7 @@ certUtils.init(logger);
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7266;
 
 // Ensure logs directory exists
 const logsDir = path.join(__dirname, 'logs');
@@ -606,14 +606,14 @@ const httpServer = http.createServer((req, res) => {
 });
 
 // Start HTTP server
-const httpPort = process.env.HTTP_PORT || 80;
+const httpPort = process.env.HTTP_PORT || 7265;
 httpServer.listen(httpPort, () => {
     logger.info(`HTTP server running on port ${httpPort}`);
 });
 
 // Start HTTPS server if certificates are available
 if (httpsOptions) {
-    const httpsPort = process.env.HTTPS_PORT || 443;
+    const httpsPort = process.env.HTTPS_PORT || 7266;
     const httpsServer = https.createServer(httpsOptions, app);
     
     httpsServer.listen(httpsPort, () => {
