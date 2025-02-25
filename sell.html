@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Item - Price Drop Marketplace</title>
+    <link rel="stylesheet" href="sell-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>Price Drop</h1>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#" id="my-items-link">My Items</a>
+                    <a href="#" id="profile-link">Profile</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h2>Sell Your Item</h2>
+                <p>List your item with automatic price drops. Set your starting price and minimum price, and watch it sell at the right price.</p>
+            </div>
+
+            <div class="form-card">
+                <form id="sell-form">
+                    <div class="form-group">
+                        <label for="item-name">Item Name*</label>
+                        <input type="text" id="item-name" name="name" required>
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-description">Description*</label>
+                        <textarea id="item-description" name="description" rows="5" required></textarea>
+                        <div class="help-text">Provide details about condition, features, and anything else buyers should know.</div>
+                        <div class="error-message" id="description-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-category">Category*</label>
+                        <select id="item-category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="books">Books</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="category-error"></div>
+                    </div>
+
+                    <div class="price-container">
+                        <div class="form-group">
+                            <label for="start-price">Starting Price ($)*</label>
+                            <input type="number" id="start-price" name="startPrice" min="1" step="1" required>
+                            <div class="help-text">Initial listing price</div>
+                            <div class="error-message" id="start-price-error"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="min-price">Minimum Price ($)*</label>
+                            <input type="number" id="min-price" name="minPrice" min="0" step="1" required>
+                            <div class="help-text">Lowest price you'll accept</div>
+                            <div class="error-message" id="min-price-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-images">Upload Images*</label>
+                        <div class="file-upload">
+                            <input type="file" id="item-images" name="image" accept="image/*" required>
+                            <div class="upload-button">
+                                <span>Choose file</span>
+                            </div>
+                            <div class="file-name">No file chosen</div>
+                        </div>
+                        <div class="help-text">Upload clear photos of your item. Maximum size: 5MB</div>
+                        <div class="error-message" id="image-error"></div>
+                    </div>
+
+                    <div class="preview-container">
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+
+                    <div class="form-group price-simulation">
+                        <h3>Price Drop Preview</h3>
+                        <p>See how your price will drop over time until it reaches your minimum:</p>
+                        <div class="simulation-container" id="simulation-container">
+                            <div class="simulation-timeline"></div>
+                        </div>
+                    </div>
+
+                    <div class="terms-container">
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms-agreement" name="terms" required>
+                            <label for="terms-agreement">I agree to the <a href="#">Seller Terms and Conditions</a></label>
+                            <div class="error-message" id="terms-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" class="submit-btn">List Item for Sale</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="modal" id="success-modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="success-icon">✓</div>
+                <h2>Item Listed!</h2>
+                <p>Your item has been successfully listed on Price Drop Marketplace.</p>
+                <div class="button-group">
+                    <a href="#" class="modal-btn primary" id="view-item-btn">View Your Item</a>
+                    <a href="#" class="modal-btn" id="list-another-btn">List Another Item</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Price Drop</h3>
+                    <p>The marketplace where waiting can save you money. Every hour, every item gets cheaper until someone buys it.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Email: support@onedollarfish.com</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Price Drop Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Authentication check - redirect to login if not logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in (token exists)
+            const token = localStorage.getItem('token');
+            if (!token) {
+                // Redirect to login page
+                window.location.href = 'auth.html';
+            }
+        });
+
+        // Toggle mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // File upload preview
+        document.getElementById('item-images').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Update file name display
+                document.querySelector('.file-name').textContent = file.name;
+                
+                // Show image preview
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgPreview = document.getElementById('image-preview');
+                    imgPreview.innerHTML = `<img src="${event.target.result}" alt="Preview">`;
+                    imgPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.querySelector('.file-name').textContent = 'No file chosen';
+                document.getElementById('image-preview').style.display = 'none';
+            }
+        });
+
+        // Price simulation
+        function updatePriceSimulation() {
+            const startPrice = parseFloat(document.getElementById('start-price').value);
+            const minPrice = parseFloat(document.getElementById('min-price').value);
+            
+            if (isNaN(startPrice) || isNaN(minPrice) || startPrice <= 0) {
+                return;
+            }
+            
+            const simulationContainer = document.getElementById('simulation-container');
+            simulationContainer.innerHTML = '<div class="simulation-timeline"></div>';
+            
+            // Calculate number of price drops
+            const priceDifference = startPrice - minPrice;
+            const drops = Math.min(10, priceDifference); // Show max 10 price points
+            
+            // Calculate price points to show
+            const pricePoints = [];
+            for (let i = 0; i <= drops; i++) {
+                let hours = i;
+                let price = startPrice - i;
+                
+                if (drops > priceDifference) {
+                    // If we're showing fewer points than the full price difference
+                    hours = Math.floor(i * (priceDifference / drops));
+                    price = startPrice - hours;
+                }
+                
+                // Don't go below minimum price
+                if (price < minPrice) {
+                    price = minPrice;
+                }
+                
+                pricePoints.push({
+                    hours: hours,
+                    price: price
+                });
+            }
+            
+            // Create price points in simulation
+            pricePoints.forEach((point, index) => {
+                const pointElement = document.createElement('div');
+                pointElement.className = 'price-point';
+                
+                // Calculate intensity based on price (higher price = more intense color)
+                const intensity = Math.floor(((point.price - minPrice) / (startPrice - minPrice)) * 255);
+                const color = `rgb(${33}, ${150}, ${243}, ${intensity / 255})`;
+                
+                pointElement.innerHTML = `
+                    <div class="price-marker" style="background-color: ${color}">
+                        <span class="price-value">$${point.price}</span>
+                    </div>
+                    <div class="hour-label">Hour ${point.hours}</div>
+                `;
+                
+                simulationContainer.appendChild(pointElement);
+            });
+            
+            // Add reset indicator if there's a big difference between start and min price
+            if (priceDifference > 10) {
+                const resetElement = document.createElement('div');
+                resetElement.className = 'reset-indicator';
+                resetElement.innerHTML = `
+                    <div class="reset-arrow">↻</div>
+                    <div class="reset-text">Resets to starting price</div>
+                `;
+                simulationContainer.appendChild(resetElement);
+            }
+        }
+        
+        document.getElementById('start-price').addEventListener('input', updatePriceSimulation);
+        document.getElementById('min-price').addEventListener('input', updatePriceSimulation);
+
+        // Form validation and submission
+        document.getElementById('sell-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+            });
+            
+            let isValid = true;
+            
+            // Validate name
+            const name = document.getElementById('item-name').value.trim();
+            if (name.length < 3) {
+                document.getElementById('name-error').textContent = 'Name must be at least 3 characters long';
+                isValid = false;
+            }
+            
+            // Validate description
+            const description = document.getElementById('item-description').value.trim();
+            if (description.length < 10) {
+                document.getElementById('description-error').textContent = 'Description must be at least 10 characters long';
+                isValid = false;
+            }
+            
+            // Validate category
+            const category = document.getElementById('item-category').value;
+            if (!category) {
+                document.getElementById('category-error').textContent = 'Please select a category';
+                isValid = false;
+            }
+            
+            // Validate prices
+            const startPrice = parseFloat(document.getElementById('start-price').value);
+            const minPrice = parseFloat(document.getElementById('min-price').value);
+            
+            if (isNaN(startPrice) || startPrice < 1) {
+                document.getElementById('start-price-error').textContent = 'Starting price must be at least $1';
+                isValid = false;
+            }
+            
+            if (isNaN(minPrice) || minPrice < 0) {
+                document.getElementById('min-price-error').textContent = 'Minimum price cannot be negative';
+                isValid = false;
+            }
+            
+            if (minPrice > startPrice) {
+                document.getElementById('min-price-error').textContent = 'Minimum price cannot be higher than starting price';
+                isValid = false;
+            }
+            
+            // Validate image
+            const image = document.getElementById('item-images').files[0];
+            if (!image) {
+                document.getElementById('image-error').textContent = 'Please upload an image';
+                isValid = false;
+            } else if (!['image/jpeg', 'image/png', 'image/webp'].includes(image.type)) {
+                document.getElementById('image-error').textContent = 'Only JPG, PNG, and WebP images are allowed';
+                isValid = false;
+            } else if (image.size > 5 * 1024 * 1024) { // 5MB
+                document.getElementById('image-error').textContent = 'Image size must be less than 5MB';
+                isValid = false;
+            }
+            
+            // Validate terms
+            if (!document.getElementById('terms-agreement').checked) {
+                document.getElementById('terms-error').textContent = 'You must agree to the terms';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // In a real app, submit to server
+                try {
+                    const formData = new FormData();
+                    formData.append('name', name);
+                    formData.append('description', description);
+                    formData.append('startPrice', startPrice);
+                    formData.append('minPrice', minPrice);
+                    formData.append('category', category);
+                    formData.append('image', image);
+                    
+                    // Get token from localStorage
+                    const token = localStorage.getItem('token');
+                    
+                    // Send form data to server
+                    const response = await fetch('https://onedollarfish.com/api/items', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        // Store item ID for view link
+                        localStorage.setItem('lastItemId', data.id);
+                        
+                        // Show success modal
+                        document.getElementById('success-modal').style.display = 'block';
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Error: ${errorData.message || 'Failed to create item'}`);
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('An error occurred while submitting your item. Please try again.');
+                }
+            }
+        });
+
+        // Modal controls
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.getElementById('success-modal').style.display = 'none';
+        });
+
+        document.getElementById('list-another-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('success-modal').style.display = 'none';
+            document.getElementById('sell-form').reset();
+            document.getElementById('image-preview').innerHTML = '';
+            document.querySelector('.file-name').textContent = 'No file chosen';
+        });
+
+        document.getElementById('view-item-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const itemId = localStorage.getItem('lastItemId');
+            window.location.href = `item.html?id=${itemId}`;
+        });
+
+        // Logout functionality
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
